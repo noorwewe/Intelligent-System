@@ -1,0 +1,47 @@
+[System]
+Name='RIsk Analysis'
+Ninputs=2
+Noutputs=1
+Nrules=4
+Nexceptions=0
+Conjunction='min'
+MissingValues='random'
+
+[Input1]
+Active='yes'
+Name='project_funding'
+Range=[       0.000 ,       1.000 ]
+NMFs=3
+MF1='inadequate','SemiTrapezoidalInf',[       0.000 ,       0.200 ,       0.500 ]
+MF2='adequate','SemiTrapezoidalSup',[       0.500 ,       0.800 ,       1.000 ]
+MF3='marginal','triangular',[       0.300 ,       0.500 ,       0.700 ]
+
+[Input2]
+Active='yes'
+Name='project_staffing'
+Range=[       0.000 ,       1.000 ]
+NMFs=2
+MF1='small','SemiTrapezoidalInf',[       0.000 ,       0.300 ,       0.700 ]
+MF2='large','SemiTrapezoidalSup',[       0.300 ,       0.700 ,       1.000 ]
+
+[Output1]
+Nature='fuzzy'
+Defuzzification='area'
+Disjunction='sum'
+DefaultValue=      -1.000 
+Classif='no' 
+Active='yes'
+Name='risk'
+Range=[       0.000 ,       1.000 ]
+NMFs=3
+MF1='low','SemiTrapezoidalInf',[      -0.404 ,       0.300 ,       0.500 ]
+MF2='normal','triangular',[       0.300 ,       0.500 ,       0.700 ]
+MF3='high','SemiTrapezoidalSup',[       0.500 ,       0.700 ,       1.404 ]
+
+[Rules]
+2, 0,        1.000 ,
+3, 2,        2.000 ,
+1, 0,        3.000 ,
+0, 1,        1.000 ,
+
+[Exceptions]
